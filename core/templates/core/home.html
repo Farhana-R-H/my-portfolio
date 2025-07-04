@@ -1,0 +1,762 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="{% static 'core/style.css' %}">
+ <link href="https://fonts.googleapis.com/css2?family=League+Spartan&display=swap" rel="stylesheet">
+
+  <style>
+   * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  font-family: 'League Spartan', sans-serif;
+  scroll-behavior: smooth;
+}
+
+/* Navigation bar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: transparent;
+}
+
+.navbar h1 {
+  color: #fff;
+  font-size: 24px;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+  color: #ff69b4;
+}
+
+/* Hero */
+.hero {
+  height: 100vh;
+  width: 100%;
+  background: url("{% static 'core/images/your-image.png' %}") no-repeat center center/cover;
+  position: relative;
+}
+
+/* About */
+.about-section {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.about-container {
+  position: relative;
+  width: 80%;
+  max-width: 1200px;
+}
+
+.about-photo {
+  width: 100%;
+  border-radius: 40px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.about-overlay-text {
+  position: absolute;
+  top: 35%;
+  left: 36%;
+  width: 65%;
+  padding: 20px;
+  color: #333;
+}
+
+.about-overlay-text h2 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.about-overlay-text p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* Skills */
+.skills-section {
+  padding: 80px 20px;
+  background-color: white;
+  text-align: center;
+}
+.skills-section .skills-heading {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 45px;
+  color: #ffc0cb;
+  margin-bottom: 20px; /* Reduced from 30px to move it up */
+  letter-spacing: 1px;  /* Adds a little space between characters */
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 40px;
+  justify-items: center;
+}
+
+.skill-card {
+  background-color: white;
+  border: 2px solid #ffc0cb;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 192, 203, 0.1);
+  width: 150px;
+  height: 140px;
+}
+
+.skill-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(255, 105, 180, 0.2);
+}
+
+.skill-card img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.skill-card p {
+  font-size: 16px;
+  color: #333;
+  margin: 0;
+}
+
+/* Internship */
+.internship-section {
+  background-color: #ffc0cd;
+  padding: 60px 20px;
+}
+
+.internship-section .section-heading {
+  color: white;
+}
+
+.internship-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  height: 300px;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.internship-table th,
+.internship-table td {
+  border: 1px solid #f0a7cf;
+  padding: 20px 15px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.internship-table th {
+  background-color: #ffd6eb;
+  color: #ca66a9;
+  font-weight: bold;
+  font-family: 'League Spartan', sans-serif;
+}
+
+.company-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: transparent;
+}
+
+.company-cell img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.internship-table ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+/* Education */
+.education-section {
+  background-color: #ffc0cd; /* Full soft pink background */
+  padding: 60px 20px;
+}
+
+.education-section .section-heading {
+  color: white;
+}
+
+.education-table {
+  background-color: #ffc0cd;
+  border-radius: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+
+.education-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.education-table th,
+.education-table td {
+  border: 1px solid #f0a7cf;
+  padding: 20px 15px;
+  text-align: left;
+  vertical-align: top;
+  font-size: 15px;
+}
+
+.education-table th {
+  background-color: #ffd6eb;
+  color: #ca66a9;
+  font-weight: bold;
+  font-family: 'League Spartan', sans-serif;
+}
+
+/* Projects */
+.projects-section {
+  background-color: #fff;
+  padding: 60px 20px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.project-card {
+  background-color: #fdfdfd;
+  border: 1px solid #ffc0cd;
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-card img {
+  width: 60%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.project-card h3 {
+  font-size: 22px;
+  color: #ca66a9;
+  margin-bottom: 12px;
+}
+
+.project-card p {
+  font-size: 17px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.project-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Certificates */
+.certificate-section {
+  background-color: #fdfdfd;
+  padding: 60px 20px;
+}
+
+.certificate-card {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #ffc0cd;
+  border-radius: 20px;
+  padding: 20px;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.certificate-image img {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.certificate-details {
+  flex: 1;
+}
+
+.certificate-details h3 {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 24px;
+  color: #ffc0cb;
+  margin-bottom: 15px;
+}
+
+.certificate-details p {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Contact */
+.contact-section {
+  background-image: url("{% static 'core/images/contact-bg.png' %}");
+  background-size: cover;
+  background-position: center;
+  padding: 150px 20px;
+  color: rgb(66, 62, 62);
+  text-align: right;
+}
+
+.contact-wrapper {
+  max-width: 600px;
+  margin-left: auto;
+  padding-right: 200px;
+}
+
+.contact-item {
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.contact-label {
+  font-weight: 600;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.contact-label:hover {
+  color: #ffdee9;
+}
+
+.contact-detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  font-size: 15px;
+  color: #010001;
+}
+
+.contact-detail a {
+  color: #151415;
+  text-decoration: underline;
+}
+
+.contact-detail.open {
+  margin-top: 8px;
+  max-height: 100px;
+}
+
+/* Buttons */
+.certificate-btn,
+.btn {
+  background-color: #ca66a9;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.certificate-btn:hover,
+.btn:hover {
+  background-color: #a94f8a;
+}
+
+.btn.github {
+  background-color: #333;
+}
+
+.btn.github:hover {
+  background-color: #222;
+}
+
+/* Footer */
+.footer-section {
+  background-color: #f0bbd7;
+  color: rgb(6, 5, 5);
+  text-align: center;
+  padding: 20px 10px;
+  font-family: 'League Spartan', sans-serif;
+  font-size: 14px;
+}
+
+/* Section Heading — used consistently */
+.section-heading {
+  text-align: center;
+  font-family: 'League Spartan', sans-serif;
+  font-size: 36px;
+  color: #ffc0cb;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+  @media (max-width: 768px) {
+    .about-overlay-text {
+      position: static;
+      width: 100%;
+      padding: 20px 10px;
+      text-align: center;
+      transform: none;
+      top: auto;
+      left: auto;
+    }
+  }
+
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <nav class="navbar">
+      <h1>MY PORTFOLIO</h1>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <!-- About Me Section -->
+<section class="about-section" id="about">
+  <div class="about-container">
+    <img src="{% static 'core/images/about-photo.png' %}" alt="About Me Image" class="about-photo">
+
+    <div class="about-overlay-text">
+     
+      <p>
+  I'm a self-motivated full-stack developer with experience in building responsive and user-friendly web applications. I work with React, HTML, CSS, JavaScript, and Bootstrap on the front end, and Django and Python on the back end.
+  <br><br>
+  I’ve also worked on integrating React with Django, using APIs, and deploying projects on platforms like PythonAnywhere. I enjoy learning new technologies and solving real-world problems through code.
+</p>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="skills-section" id="skills">
+  <h2 class="skills-heading">SKILLS</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <img src="{% static 'core/images/html5.svg' %}" alt="HTML">
+      <p>HTML</p>
+    </div>
+    <div class="skill-card">
+      <img src="{% static 'core/images/css.svg' %}" alt="CSS">
+      <p>CSS</p>
+    </div>
+    <div class="skill-card">
+      <img src="{% static 'core/images/javascript.svg' %}" alt="JavaScript">
+      <p>JavaScript</p>
+    </div>
+    <div class="skill-card">
+      <img src="{% static 'core/images/python.svg' %}" alt="Python">
+      <p>Python</p>
+    </div>
+    <div class="skill-card">
+      <img src="{% static 'core/images/mysql.svg' %}" alt="MySQL">
+      <p>MySQL</p>
+    </div>
+    <div class="skill-card">
+      <img src="{% static 'core/images/github.svg' %}" alt="GitHub">
+      <p>GitHub</p>
+    </div>
+    <div class="skill-card">
+      <img src="{% static 'core/images/postman.svg' %}" alt="Postman">
+      <p>Postman</p>
+    </div>
+    <div class="skill-card">
+      <img src="{% static 'core/images/react.svg' %}" alt="React">
+      <p>React</p>
+    </div>
+    <div class="skill-card">
+      <img src="{% static 'core/images/django.svg' %}" alt="Django">
+      <p>Django</p>
+    </div>
+    <div class="skill-card">
+      <img src="{% static 'core/images/pythonanywhere.svg' %}" alt="PythonAnywhere">
+      <p>PythonAnywhere</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="internship-section" id="internships">
+  <h2 class="section-heading">INTERNSHIP</h2>
+  <div class="internship-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Company</th>
+          <th>Duration</th>
+          <th>Work Description</th>
+          <th>Certificate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Python Full Stack Intern</td>
+          <td class="company-cell">
+            <img src="{% static 'core/images/company1.png' %}" alt="Company Logo">
+            <span>One Team Solutions EdTech Pvt Ltd, Kochi</span>
+          </td>
+          <td>Jan 2025 – May 2025</td>
+          <td>
+           <ul>
+  <li>Proficient in Python for backend logic</li>
+  <li>Built UI using React, HTML, CSS, and Bootstrap</li>
+  <li>Created reusable React components</li>
+  <li>Used Django for backend development</li>
+  <li>Worked with Django REST Framework</li>
+  <li>Integrated frontend with APIs</li>
+  <li>Deployed projects on PythonAnywhere</li>
+  <li>Managed code using GitHub</li>
+  <li>Practiced clean code and debugging</li>
+  <li>Explored full-stack project flow</li>
+</ul>
+
+          </td>
+          <td>
+          <a href="{% url 'certificate_pending' %}" target="_blank" class="certificate-btn">View Certificate</a>
+
+          </td>
+        </tr>
+        <!-- Add more internship rows as needed -->
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="projects-section" id="projects">
+  <h2 class="section-heading">PROJECTS</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <img src="{% static 'core/images/project1.jpeg' %}" alt="Project 1">
+      <h3>MYBOOKJOURNAL - Personal Reading Tracking System</h3>
+      <p>A personalized reading companion to monitor your book progress — track start & end dates, pages read, and keep your reading journey organized.</p>
+      <div class="project-buttons">
+        <a href="https://mybookjournal.pythonanywhere.com/" target="_blank" class="btn">Live Demo</a>
+        <a href="https://github.com/Farhana-R-H/mybookjournal" target="_blank" class="btn github">GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="{% static 'core/images/project2.jpeg' %}" alt="Project 2">
+      <h3> MOODMEALS – Food Recommender</h3>
+      <p>Select your current mood and get food suggestions with full recipes tailored to how you feel — whether you're happy, sad, stressed, or relaxed!.</p>
+      <div class="project-buttons">
+       <a href="{% url 'not_deployed' %}" class="btn">Live Demo</a>
+
+        <a href="https://github.com/Farhana-R-H/Django-React-Integration" target="_blank" class="btn github">GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="{% static 'core/images/project3.jpeg' %}" alt="Project 3">
+      <h3> HERBALGLOW – Nature’s Touch, Delivered
+</h3>
+      <p>An e-commerce platform offering a curated range of herbal wellness products — including Ayurvedic oils, natural scrubs, and eco-friendly tools like bamboo brushes and wooden combs. HerbalGlow promotes sustainable self-care with handcrafted kits and holistic combos.
+
+.</p>
+      <div class="project-buttons">
+        <a href="{% url 'not_deployed' %}" class="btn">Live Demo</a>
+
+        <a href="https://github.com/Farhana-R-H/E-Commerce-Website" target="_blank" class="btn github">GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="{% static 'core/images/project4.jpeg' %}" alt="Project 4">
+      <h3>WORDLY – Your Quick & Smart Word Companion</h3>
+      <p>Wordly is a sleek and simple online dictionary where users can search any word to instantly get its definition, example sentences, and usage. Designed for quick lookups and language learning support, Wordly is your go-to tool for building vocabulary.</p>
+      <div class="project-buttons">
+        <a href="{% url 'not_deployed' %}" class="btn">Live Demo</a>
+
+        <a href="https://github.com/Farhana-R-H/wordly-dictionary-app" target="_blank" class="btn github">GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="education-section" id="education">
+  <h2 class="section-heading">EDUCATION</h2>
+  <div class="education-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Course</th>
+          <th>Institution</th>
+          <th>Duration</th>
+          <th>Certificate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>SSLC</td>
+          <td>SN TRUST, Nattika</td>
+          <td>2019</td>
+          <td>
+            <a href="{% static 'core/images/certificate_10th.jpeg' %}" target="_blank" class="certificate-btn">View Certificate</a>
+          </td>
+        </tr>
+        <tr>
+          <td>12th - BIOLOGY SCIENCE</td>
+          <td>GVHSS Thalikulam, Thrissur</td>
+          <td>2019-2021</td>
+          <td>
+            <a href="{% static 'core/images/certificate_12th.jpeg' %}" target="_blank" class="certificate-btn">View Certificate</a>
+          </td>
+        </tr>
+        <tr>
+          <td>B.Sc. in Mathematics</td>
+          <td>MES Asmabi College, Vemballur</td>
+          <td>2021 - 2024</td>
+          <td>
+            <a href="{% url 'certificate_pending' %}" target="_blank" class="certificate-btn">View Certificate</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+ 
+
+<section class="certificate-section" id="certificates">
+  <h2 class="section-heading">CERTIFICATES</h2>
+  <div class="certificate-card">
+    <div class="certificate-image">
+      <img src="{% static 'core/images/iit_certificate.jpeg' %}" alt="IIT Data Analytics Certificate">
+    </div>
+    <div class="certificate-details">
+      <h3>Data Analytics with Python – IIT Madras</h3>
+      <p>This certificate was awarded by IIT Roorkee through the SWAYAM-NPTEL platform for successfully completing the "Data Analytics with Python" course. The course covered core topics such as NumPy, pandas, data visualization, and an introduction to machine learning using real-world data.</p>
+
+       <a href="{% static 'core/images/iit_certificate.jpeg' %}" target="_blank" class="certificate-btn">View Certificate</a>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="contact-wrapper">
+   
+
+    <div class="contact-item" onclick="toggleContact('email')">
+      <div class="contact-label">EMAIL</div>
+      <div class="contact-detail" id="email">farhanarh9@gmail.com</div>
+    </div>
+
+    <div class="contact-item" onclick="toggleContact('phone')">
+      <div class="contact-label">PHONE NUMBER</div>
+      <div class="contact-detail" id="phone">+91 7907734397</div>
+    </div>
+
+    <div class="contact-item" onclick="toggleContact('github')">
+      <div class="contact-label">GITHUB</div>
+      <div class="contact-detail" id="github">
+        <a href="https://github.com/Farhana-R-H" target="_blank">github.com/Farhana-R-H</a>
+      </div>
+    </div>
+
+    <div class="contact-item" onclick="toggleContact('linkedin')">
+      <div class="contact-label">LINKEDIN</div>
+      <div class="contact-detail" id="linkedin">
+        <a href="https://linkedin.com/in/farhanarh" target="_blank">linkedin.com/in/farhanarh</a>
+      </div>
+    </div>
+
+    <div class="contact-item" onclick="toggleContact('resume')">
+  <div class="contact-label">RESUME</div>
+  <div class="contact-detail" id="resume">
+    <a href="{% static 'core/files/Farhana_CV_FullStack.pdf' %}" download>Download Resume (PDF)</a>
+  </div>
+</div>
+
+  </div>
+</section>
+
+<footer class="footer-section">
+  <p>&copy; 2025 Farhana RH. All rights reserved.</p>
+</footer>
+
+ <script>
+  function toggleContact(id) {
+    const detail = document.getElementById(id);
+    detail.classList.toggle('open');
+  }
+</script>
+
+
+</body>
+</html>

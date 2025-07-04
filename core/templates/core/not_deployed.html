@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Project Not Deployed</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffe6f0;
+      color: #8b004b;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+
+    .message-box {
+      max-width: 500px;
+      padding: 40px;
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .message-box h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .message-box p {
+      font-size: 18px;
+    }
+
+    .back-home {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 10px 20px;
+      background-color: #ca66a9;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 16px;
+      transition: background 0.3s ease;
+    }
+
+    .back-home:hover {
+      background-color: #a94f8a;
+    }
+  </style>
+</head>
+<body>
+  <div class="message-box">
+    <h1>🚧 Project Not Deployed Yet</h1>
+    <p>This project hasn't been deployed yet. Please check back later or view the code on GitHub if available.</p>
+    <a class="back-home" href="{% url 'home' %}">← Back to Home</a>
+  </div>
+</body>
+</html>
